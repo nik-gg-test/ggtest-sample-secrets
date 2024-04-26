@@ -1,0 +1,13 @@
+#this is a test
+$userid = "UN6609YV"
+$passwd = "AWS68373778334fHHYUU96867335&"
+
+$another-userid = "FRED123V"
+$another-passwd = "AWS65877d99434fHHYUU99867335&"
+
+$another-userid = "FRED555V"
+$another-passwd = "AWS65877d9936778UU99867335&"
+
+
+$another-userid = "FRED666V"
+$another-passwd = "AWS65877d9936778UU9876544569867335&"
