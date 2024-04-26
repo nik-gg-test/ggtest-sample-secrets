@@ -33,3 +33,4 @@ Of course, these are not the only types of secrets that we support. You can find
 
 > :owl: [GitGuardian](https://www.gitguardian.com/) is an automated secrets detection service.
 We help developers and security teams secure the modern software development process.
+"# ggtest-sample-secrets" 
