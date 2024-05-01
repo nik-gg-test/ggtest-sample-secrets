@@ -1,3 +1,3 @@
 #test
 
-$secret = "AWShdfksfgggghjjdhh567vfghdsfgfnvnsxz765376mhjdhjgch5ghhhfgdfhdghggv8cbxgnxngsfhsfg6d034343987dfsa"
+$secret = "AWSh6D034343987DFSA"
