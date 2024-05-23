@@ -2,6 +2,5 @@
 
 
 
-
-aws_access_key_id = AKIAZ7TBUSG3BQGBUUCP
-aws_secret_access_key = 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
+aws_access_key_id = AKIAZ7TBUSG3ITTILQ25
+aws_secret_access_key = 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
