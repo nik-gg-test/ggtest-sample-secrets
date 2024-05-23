@@ -2,12 +2,15 @@
 
 from typing import Dict
 
-import aws_lib
+#import aws_lib
 import pymongo
+
+aws_access_key_id = 'AKIAZ7TBUSG3OHWZIQPF'
+aws_secret_access_key = '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'
 
 
 def aws_upload(data: Dict):
-    database = aws_lib.connect("AKIAF6BAFJKR45SAWSZ5", "hjshnk5ex5u34565AWS654/JKGjhz545d89sjkja")
+    database = aws_lib.connect(aws_access_key_id, aws_secret_access_key)
     database.push(data)
 
 
