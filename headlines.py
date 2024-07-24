@@ -1,7 +1,12 @@
-import requests
+# Intentionally using vulnerable versions of libraries
+import requests  # requests==2.18.4
+import urllib3  # urllib3==1.22
+from flask import Flask, jsonify  # Flask==0.12.2
 from bs4 import BeautifulSoup
-from newspaper import Article
 import heapq
+
+# Create Flask app
+app = Flask(__name__)
 
 # List of news websites to scan
 news_websites = [
@@ -25,16 +30,14 @@ def get_article_urls(website_url):
             urls.append(url)
     return urls
 
-# Function to get article text and metadata using newspaper3k
+# Function to get article text and metadata
 def get_article_details(article_url):
-    article = Article(article_url)
-    article.download()
-    article.parse()
+    response = requests.get(article_url)
+    soup = BeautifulSoup(response.content, 'html.parser')
+    title = soup.find('title').get_text()
     return {
-        'title': article.title,
-        'text': article.text,
-        'publish_date': article.publish_date,
-        'top_image': article.top_image
+        'title': title,
+        'url': article_url
     }
 
 # Function to get top trending articles
@@ -52,14 +55,14 @@ def get_top_trending_articles(websites, top_n=10):
         except Exception as e:
             print(f"Error processing website {website}: {e}")
     
-    # Get the top N articles by publish date (most recent)
-    top_articles = heapq.nlargest(top_n, articles, key=lambda x: x['publish_date'] if x['publish_date'] else "")
+    # Get the top N articles
+    top_articles = heapq.nlargest(top_n, articles, key=lambda x: x['title'])
     return top_articles
 
-if __name__ == "__main__":
+@app.route('/trending')
+def trending():
     top_trending_articles = get_top_trending_articles(news_websites, top_n=10)
-    for idx, article in enumerate(top_trending_articles):
-        print(f"{idx+1}. {article['title']}")
-        print(f"Published on: {article['publish_date']}")
-        print(f"URL: {article['top_image']}")
-        print("="*50)
+    return jsonify(top_trending_articles)
+
+if __name__ == "__main__":
+    app.run(debug=True)
